@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Is Mercury in Retrograde?</title>
+  </head>
+  <body>
+    <h1>Is Mercury in Retrograde?</h1>
+    <h1 id="mercury-retrograde-status"></h1>
+
+    <script>
+      // Fetch the Mercury Retrograde status from the API
+      async function fetchMercuryRetrogradeStatus() {
+        const response = await fetch("https://mercuryretrogradeapi.com/");
+        const data = await response.json();
+        return data.is_retrograde;
+      }
+
+      // Update the h1 element with the Mercury Retrograde status
+      async function updateMercuryRetrogradeStatus() {
+        const isRetrograde = await fetchMercuryRetrogradeStatus();
+        const mercuryRetrogradeStatusElement = document.getElementById(
+          "mercury-retrograde-status"
+        );
+        mercuryRetrogradeStatusElement.innerHTML = isRetrograde ? "Yes" : "No";
+      }
+
+      // Update the Mercury Retrograde status when the web page loads
+      window.onload = updateMercuryRetrogradeStatus;
+    </script>
+  </body>
+</html>
